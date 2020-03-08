@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: url("../img/war-bg.jpg") rgba(0,0,0,0.5) no-repeat;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+    font-size: 2em;
+}
+
+.content {
+    /* display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-height: 100%;
+    margin: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgba(0,0,0,0.5) ;
+}
+
+
+.keycap {
+    padding: 20px 12px 20px 12px;
+    border: 1px solid white;
+    border-radius: 8px;
+}
