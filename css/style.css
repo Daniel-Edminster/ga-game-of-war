@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    background: url("../img/war-bg.jpg") rgba(0,0,0,0.5) no-repeat;
+    background: url("../img/war-bg.jpg") no-repeat;
     background-size: cover;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -24,7 +24,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: rgba(0,0,0,0.7) ;
+    background: rgba(0,0,0,0.5) ;
 }
 
 .keycap {

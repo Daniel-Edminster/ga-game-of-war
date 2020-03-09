@@ -1,28 +1,17 @@
-// const deck
 
-let spade = [];
-let heart = [];
-let diamond = [];
-let club = [];
 
-// let card = [
-//     {
-//     suit: "",
-//     num: ""
-//     },
-// ];
-
-// let deck = array(52);
-let deck = [];
+let deck = [] ;
+let playerDeck = [];
+let aiDeck = [];
 
 function generateDeck()
 {
-    let card = [
-        {
-            suit: "",
-            num: 0
-        }
-    ];
+    // let card = [
+    //     {
+    //         suit: "",
+    //         num: 0
+    //     }
+    // ];
 
     let counter = 0;
 
@@ -32,85 +21,95 @@ function generateDeck()
         {
             if(x === 0)
             {
-                card.suit = "spade";
-                card.num = i+2;
-
+                card = 
+                    {
+                        suit: "spade",
+                        num: i+2
+                    };
+                // card.suit = "spade";
+                // card.num = i+2;
+                deck.push(card);
 
             }
             else if(x === 1)
             {
-                card.suit = "heart";
-                card.num = i+2;
-
+                card = 
+                    {
+                        suit: "heart",
+                        num: i+2
+                    };
+                // card.suit = "heart";
+                // card.num = i+2;
+                // deck.push(card);
+                deck[counter] = card;
 
             }
             else if(x === 2)
             {
-                card.suit = "diamond";
-                card.num = i+2;
-
+                card = 
+                    {
+                        suit: "diamond",
+                        num: i+2
+                    };
+                // card.suit = "diamond";
+                // card.num = i+2;
+                // deck.push(card);
+                deck[counter] = card;
 
             }
             else if(x === 3)
             {
-                card.suit = "club";
-                card.num = i+2;
-                
+                // card.suit = "club";
+                // card.num = i+2;
+                card = 
+                    {
+                        suit: "club",
+                        num: i+2
+                    };
+                deck[counter] = card;
 
             }     
             else {
                 alert('outta loop');
             }
-
-            deck[counter] = [
-                {
-                    suit: card.suit, 
-                    num: card.num
-                } 
             
-        ];
-            counter++;
-           
 
-      
+            counter++;
 
         }
 
     }
+        shuffle(deck);
+        assignDecks();
+}
 
-        // deck.shuffle;
+function assignDecks()
+{
+    // playerDeck.push(
+    //     deck.slice(0, Math.ceil(deck.length / 2))
+    // );
 
-        console.log(counter);
-        console.log(deck);
-
-    // let deck = [
-    //     {
-    //         suit: "Spade",
-    //         cards: spade
-    //     },
-    //     {
-    //         suit: "Heart",
-    //         cards: heart
-    //     },
-    //     {
-    //         suit: "Diamond",
-    //         cards: diamond
-    //     },
-    //     {
-    //         suit: "Club",
-    //         cards: club
-    //     }
-    // ];
-
-
-    // console.log(deck);
-
-    // alert(deck);
-    function shuffle(array) {
-        array.sort(() => Math.random() - 0.5);
-      }
-
-
-    // console.log(deck);
+    for(let i=0;i<deck.length;i++)
+    {
+        i % 2 == 0 ? playerDeck.push(deck[i]) : aiDeck.push(deck[i]);
+  
+    }
     
+
+    // aiDeck.push(
+    //     deck.slice(Math.ceil(deck.length / 2), deck.length)
+    // );
+
+    console.log("PlayerDeck: ", playerDeck);
+    console.log("aiDeck: ", aiDeck);
+}
+
+
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+
+function randomNumber(min, max) {  
+    return Math.floor(Math.random() * (max - min) + min); 
 }
