@@ -24,12 +24,29 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: rgba(0,0,0,0.5) ;
+    background: rgba(0,0,0,0.7) ;
 }
-
 
 .keycap {
     padding: 20px 12px 20px 12px;
     border: 1px solid white;
     border-radius: 8px;
+}
+
+.credit {
+    bottom: .5em;
+    right: .5em;
+    position: fixed;
+    /* background: rgba(255,0,0,0.1); */
+    text-align: right;
+    font-size: .5em;
+    font-weight: 400;
+    color: #999
+}
+a {
+    text-decoration: none;
+    color: #ccc;
+}
+a:visited {
+    color: #ccc;
 }
