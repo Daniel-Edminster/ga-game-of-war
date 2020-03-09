@@ -1,5 +1,3 @@
-
-
 let deck = [] ;
 let playerDeck = [];
 let aiDeck = [];
@@ -25,9 +23,8 @@ function generateDeck()
                         suit: "spade",
                         num: i+2
                     };
-                // card.suit = "spade";
-                // card.num = i+2;
-                deck.push(card);
+
+                deck[counter] = card;
 
             }
             else if(x === 1)
@@ -112,12 +109,20 @@ function turn()
 {
     // console.log("aiDeck: ", aiDeck);
     // console.log("playerDeck: ", playerDeck);
+    
     let aiCard = aiDeck.shift();
     // aiDeck.unshift(aiCard0);
     let playerCard = playerDeck.shift();
     // playerDeck.unshift(playerCard0)
     // let aiCard = aiDeck.pop();
     // let playerCard = playerDeck.pop(); 
+
+    nums = document.getElementsByClassName("card");
+    document.getElementById("playerScore").innerHTML="You: "+playerDeck.length;
+    document.getElementById("aiScore").innerHTML= "AI: "+aiDeck.length;
+    nums[0].innerHTML=playerCard.num;
+    nums[1].innerHTML=aiCard.num;
+    
 
     console.log("Your Card: ", playerCard.suit, playerCard.num);
     console.log("AI Card: ", aiCard.suit , aiCard.num);
@@ -138,16 +143,18 @@ function turn()
     }
     else {
         console.log("War!");
+        // war(playerCard, aiCard);
         war();
         clearWarCardCaches();
     }
 
 }
 
+// function war(playerCard, aiCard)
 function war()
 {
-    playerWarCardCache.push(playerCard);
-    AIWarCardCache.push(aiCard);
+    // playerWarCardCache.push(playerCard);
+    // AIWarCardCache.push(aiCard);
 
     if(playerDeck.length < 4)
     {
@@ -202,6 +209,7 @@ function war()
             }
         }
         else {
+            // war(playerCard, aiCard);
             war();
         }
 
