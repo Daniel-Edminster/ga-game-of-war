@@ -6,6 +6,8 @@ let playerWarCardCache = [];
 let AIWarCardCache = [];
 let warActive = false;
 let recursiveWar = false;
+let turnNumber = 0;
+let parentFunctionName = '';
 
 function generateDeck()
 {
@@ -135,6 +137,12 @@ function turn()
         playerDeck.push(aiCard);
         console.log("Your Deck: ", playerDeck.length, "AI Deck: ", aiDeck.length);
 
+        
+        parentFunctionName = 'turn() playerWin';
+
+        turnNumber++;
+
+
     }
     else if(playerCard.num < aiCard.num)
     {
@@ -143,12 +151,16 @@ function turn()
         aiDeck.push(aiCard);
         console.log("Your Deck: ", playerDeck.length, "AI Deck: ", aiDeck.length);
 
+        parentFunctionName = 'turn() aiWin';
+        turnNumber++;
+
     }
     else {
         console.log("War!");
         // war(playerCard, aiCard);
         war();
         clearWarCardCaches();
+        // turnNumber++;
     }
     // nums = document.getElementsByClassName("card");
     // document.getElementById("playerScore").innerHTML="You: "+playerDeck.length;
@@ -199,6 +211,14 @@ function war(playerCard = '', aiCard = '')
             console.log("AI play: ", AIWarCardCache[(AIWarCardCache.length-1)].suit, AIWarCardCache[(AIWarCardCache.length-1)].num);
             console.log("You won war!");
             console.log("Cards won:");
+
+            if(!recursiveWar) {
+                parentFunctionName = 'war() playerWin';
+            }
+            else {
+                parentFunctionName = 'war() recursive playerWin';
+            }
+
             renderCardsToBrowser(playerWarCardCache[playerWarCardCache.length-1],AIWarCardCache[AIWarCardCache.length-1]);
 
             for(let j=0; j < AIWarCardCache.length; j++)
@@ -214,6 +234,7 @@ function war(playerCard = '', aiCard = '')
             }
             console.log("Your Deck: ", playerDeck.length, "AI Deck: ", aiDeck.length);
             
+
             recursiveWar = false;
             return;
         }
@@ -223,6 +244,14 @@ function war(playerCard = '', aiCard = '')
             console.log("AI play: ", AIWarCardCache[(AIWarCardCache.length-1)].suit, AIWarCardCache[(AIWarCardCache.length-1)].num);
             console.log("You lost war!");
             console.log("Cards lost:");
+
+            if(recursiveWar) {
+                parentFunctionName = 'war() recursive playerWin';
+            }
+            else {
+                parentFunctionName = 'war() playerWin';
+            }
+
             for(let k=0; k < AIWarCardCache.length; k++)
             {
                 console.log(playerWarCardCache[k].suit, playerWarCardCache[k].num);
@@ -411,4 +440,9 @@ function renderScoresToBrowser()
     document.getElementsByClassName("playerDeckScore")[0].innerHTML = `You: ${playerDeckLength}`;
     document.getElementsByClassName("aiDeckScore")[0].innerHTML = `AI: ${aiDeckLength}`;
     return '';
+}
+
+function playerDebugLog(playerCard, playerDeck, playerWarCardCache, parentFunctionName)
+{
+
 }
