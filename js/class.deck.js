@@ -59,6 +59,8 @@ class Deck {
             console.log("----------------------------");
             console.log("Your Deck: ", this.playerDeck.length, "AI Deck: ", this.aiDeck.length);
             console.log("----------------------------");
+            
+            this.renderDecksToBrowser();
             this.clearCache();
             this.checkWinCondition();
 
@@ -73,6 +75,8 @@ class Deck {
             console.log("----------------------------");
             console.log("Your Deck: ", this.playerDeck.length, "AI Deck: ", this.aiDeck.length);
             console.log("----------------------------");
+
+            this.renderDecksToBrowser();
             this.clearCache();
             this.checkWinCondition();
         }
@@ -86,6 +90,7 @@ class Deck {
             {
                 this.playerCardCache.push(this.playerDeck.shift());
                 this.aiCardCache.push(this.aiDeck.shift());
+                this.renderDecksToBrowser();
             }
 
             while(this.playerDeck.length > 4 || this.aiDeck.length > 4)
@@ -96,6 +101,7 @@ class Deck {
                     {
                         this.playerCardCache.push(this.playerDeck.shift());
                         this.aiCardCache.push(this.aiDeck.shift());
+                        this.renderDecksToBrowser();
                     }
                     console.log("Recursive War! Drawing more cards..");
 
@@ -108,6 +114,7 @@ class Deck {
                         console.log("Your Deck: ", this.playerDeck.length, "AI Deck: ", this.aiDeck.length);
                         console.log("----------------------------");
 
+                        this.renderDecksToBrowser();
                         this.clearCache();
                         this.checkWinCondition();
                         break;
@@ -121,6 +128,8 @@ class Deck {
                         console.log("Your Deck: ", this.playerDeck.length, "AI Deck: ", this.aiDeck.length);
                         console.log("----------------------------");
 
+
+                        this.renderDecksToBrowser();
                         this.clearCache();
                         this.checkWinCondition();
                         break;         
@@ -136,6 +145,7 @@ class Deck {
                     console.log("Your Deck: ", this.playerDeck.length, "AI Deck: ", this.aiDeck.length);
                     console.log("----------------------------");
 
+                    this.renderDecksToBrowser();
                     this.clearCache();
                     this.checkWinCondition();
                     break;
@@ -149,6 +159,7 @@ class Deck {
                     console.log("Your Deck: ", this.playerDeck.length, "AI Deck: ", this.aiDeck.length);
                     console.log("----------------------------");
 
+                    this.renderDecksToBrowser();
                     this.clearCache();
                     this.checkWinCondition();
                     break;                   
@@ -249,6 +260,15 @@ class Deck {
         this.turn();
 
     }
+
+    renderDecksToBrowser()
+    {
+        let playerDeckCount = document.getElementsByClassName("playerDeck")[0];
+        playerDeckCount.innerHTML = `You: ${this.playerDeck.length}`;
+
+        let aiDeckCount = document.getElementsByClassName("aiDeck")[0];
+        aiDeckCount.innerHTML = `AI: ${this.aiDeck.length}`;
+    }
     renderCardsToBrowser()
     {
 
@@ -294,6 +314,8 @@ class Deck {
         let aiDisplayNumFour = document.getElementsByClassName("card-grid-3-3")[1];
         aiDisplayNumFour.style.color = this.aiCardCache[0].suitColor;
         aiDisplayNumFour.innerHTML = `<br />${this.aiCardCache[0].rank}`;
+
+
 
 
     }
