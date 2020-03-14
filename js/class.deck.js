@@ -14,8 +14,6 @@ class Deck {
         this.generateDeck();
         this.shuffle();
         this.assignDecks();
-        // console.log("Player Deck: ", ...this.playerDeck);
-        // console.log("AI Deck: ",...this.aiDeck);
 
      }
 
@@ -48,6 +46,8 @@ class Deck {
     {
         this.playerCardCache.push(this.playerDeck.shift());
         this.aiCardCache.push(this.aiDeck.shift());
+
+        this.renderCardsToBrowser();
 
         if(this.playerCardCache[0].score > this.aiCardCache[0].score)
         {
@@ -247,6 +247,54 @@ class Deck {
         console.log(this.aiDeck);
 
         this.turn();
+
+    }
+    renderCardsToBrowser()
+    {
+
+        let playerDisplayNumOne = document.getElementsByClassName("card-grid-1-1")[0];
+        playerDisplayNumOne.style.color = this.playerCardCache[0].suitColor;
+        playerDisplayNumOne.innerHTML = this.playerCardCache[0].rank;
+
+        let playerDisplayNumTwo = document.getElementsByClassName("card-grid-1-3")[0];
+        playerDisplayNumTwo.style.color = this.playerCardCache[0].suitColor;
+        playerDisplayNumTwo.innerHTML = this.playerCardCache[0].rank;
+
+        let playerDisplaySuit = document.getElementsByClassName("card-grid-2-2")[0];
+        playerDisplaySuit.style.color = this.playerCardCache[0].suitColor;
+        playerDisplaySuit.innerHTML = this.playerCardCache[0].suitHTMLEntity;
+
+        let playerDisplayNumThree = document.getElementsByClassName("card-grid-3-1")[0];
+        playerDisplayNumThree.style.color = this.playerCardCache[0].suitColor;
+        playerDisplayNumThree.innerHTML = `<br />${this.playerCardCache[0].rank}`;
+
+        let playerDisplayNumFour = document.getElementsByClassName("card-grid-3-3")[0];
+        playerDisplayNumFour.style.color = this.playerCardCache[0].suitColor;
+        playerDisplayNumFour.innerHTML = `<br />${this.playerCardCache[0].rank}`;
+
+        
+
+
+        let aiDisplayNumOne = document.getElementsByClassName("card-grid-1-1")[1];
+        aiDisplayNumOne.style.color = this.aiCardCache[0].suitColor;
+        aiDisplayNumOne.innerHTML = this.aiCardCache[0].rank;
+
+        let aiDisplayNumTwo = document.getElementsByClassName("card-grid-1-3")[1];
+        aiDisplayNumTwo.style.color = this.aiCardCache[0].suitColor;
+        aiDisplayNumTwo.innerHTML = this.aiCardCache[0].rank;
+
+        let aiDisplaySuit = document.getElementsByClassName("card-grid-2-2")[1];
+        aiDisplaySuit.style.color = this.aiCardCache[0].suitColor;
+        aiDisplaySuit.innerHTML = this.aiCardCache[0].suitHTMLEntity;
+
+        let aiDisplayNumThree = document.getElementsByClassName("card-grid-3-1")[1];
+        aiDisplayNumThree.style.color = this.aiCardCache[0].suitColor;
+        aiDisplayNumThree.innerHTML = `<br />${this.aiCardCache[0].rank}`;
+
+        let aiDisplayNumFour = document.getElementsByClassName("card-grid-3-3")[1];
+        aiDisplayNumFour.style.color = this.aiCardCache[0].suitColor;
+        aiDisplayNumFour.innerHTML = `<br />${this.aiCardCache[0].rank}`;
+
 
     }
  }
