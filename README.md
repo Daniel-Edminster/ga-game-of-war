@@ -32,6 +32,7 @@ _**War** (also known as **Battle** in the United Kingdom) is a [card game](https
  
 
 <hr >
+
 ```
 ┌─────────────┐┌─────────────┐┌─────────────┐┌─────────────┐
 │ ♠         ♥ ││ ♠         ♥ ││ ♠         ♥ ││ ♠         ♥ │
