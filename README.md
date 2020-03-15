@@ -16,6 +16,8 @@ _**War** (also known as **Battle** in the United Kingdom) is a [card game](https
 
 - Optional automated turns every 500ms.
 
+<hr >
+
 #### Console commands:
 
 > `war.turn();`
@@ -32,17 +34,4 @@ _**War** (also known as **Battle** in the United Kingdom) is a [card game](https
  
 
 <hr >
-
-```
-┌─────────────┐┌─────────────┐┌─────────────┐┌─────────────┐
-│ ♠         ♥ ││ ♠         ♥ ││ ♠         ♥ ││ ♠         ♥ │
-│             ││             ││             ││             │
-│             ││             ││             ││             │
-│     WAR     ││     WAR     ││     WAR     ││     WAR     │
-│             ││             ││             ││             │
-│             ││             ││             ││             │
-│ ♦         ♣ ││ ♦         ♣ ││ ♦         ♣ ││ ♦         ♣ │
-└─────────────┘└─────────────┘└─────────────┘└─────────────┘
-```
-
 
