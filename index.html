@@ -3,12 +3,14 @@
         <link rel="stylesheet" href="css/war.css" />
     </head>
 <body>
+
 <div class="content">
 
     <div class="game-grid">
 
     <div class="aiDeck">26</div>
 
+        <div class="playerCache-container"></div>
 
         <div class="playerCard">
             <div class="card-grid">
@@ -23,7 +25,18 @@
                 <div class="card-grid-3-3"></div>
             </div>
         </div>
-    
+
+        <div class="button-container-grid-item-left">
+            <a class="gamebutton" onclick="war.turn();">Turn</a>
+        </div>
+        <div class="button-container-grid-item-right">
+            <a class="gamebutton" onclick="war.reset();">Reset</a>
+        </div>
+
+        <div class="aiCache-container">
+
+            
+        </div>
         <div class="aiCard">
             <div class="card-grid">
                 <!-- style="margin-left: -0.9em;" -->
@@ -42,10 +55,10 @@
 
     
         <div class="playerDeck">26</div>
-
+        <div id="widthDebug"></div>
     </div><!--Game Grid-->
 
-    
+   
 </div><!--Content-->
 
 

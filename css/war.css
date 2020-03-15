@@ -14,18 +14,9 @@ body {
 }
 
 .content {
-    /* display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    min-height: 100%;
-    margin: auto; */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    height: 100vh;
-    background: rgba(0,0,0,0.5) ;
+    min-height: 100vh;
+    min-width: 100vw; 
+    background: rgba(0,0,0,0.75) ;
 }
 
 .credit {
@@ -57,13 +48,30 @@ a:visited {
     /* margin: 0 auto; */
 }
 
+.button-container-grid-item-left
+{
+    grid-row: 5;
+    grid-column: 4;
+}
+
+.button-container-grid-item-right
+{
+    grid-row: 5;
+    grid-column: 6;
+    text-align: right;
+}
 .gamebutton {
+    margin: .5em .5em;
     padding: .1em .2em;
     border: 1px solid white;
     background: white;
     border-radius: .1em;
     font-size: 1em;
     color: black;
+    background: rgba(255,255,255, 0.8);
+    display: block;
+    text-align: center;
+    cursor: hand;
     
 }
 
@@ -71,7 +79,9 @@ a:visited {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    min-height: 100%;
+    /* min-height: 100%; */
+    height: 100vh;
+    width: 100vw;
 }
 
 .aiDeck {
@@ -83,6 +93,7 @@ a:visited {
     min-width: 100%;
     text-align: center;
 }
+
 .playerDeck {
     background: rgba(127,127,127, 0.8);
     border-radius: .2em;
@@ -91,6 +102,7 @@ a:visited {
     min-height: 100%;
     text-align: center;
 }
+
 .aiCard {
     background: white;
     border-radius: .2em;
@@ -100,6 +112,7 @@ a:visited {
     min-width: 100%;
     text-align: center;
 }
+
 .playerCard {
     background: white;
     border-radius: .2em;
@@ -118,7 +131,6 @@ a:visited {
     min-width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-
     
 }
 
@@ -159,7 +171,6 @@ a:visited {
 .card-grid-2-3 {
     grid-row: 2;
     grid-column: 3;
-    
     /* border: 1px solid red; */
 }
 
@@ -182,9 +193,39 @@ a:visited {
 }
 
 .playerDeck, .aiDeck {
-    background: url('../img/cardbg3.jpg'); 
+    /* background: url('../img/cardbg3.jpg');  */
+    background: rgba(0,0,0,0.8);
     background-size: 100px 100px;
     background-position: left;
     background-repeat: repeat;
     border: 1px solid black;
+}
+
+.playerCache, .aiCache {
+    float: left;
+    margin-right: .1em;
+    min-height: 1em;
+    min-width: 1em;
+    background: white;
+    border-radius: .2em;
+}
+
+.playerCache-container {
+    grid-row: 9;
+    grid-column: 5;
+}
+
+.aiCache-container {
+    grid-row: 1;
+    grid-column: 5;
+}
+
+#widthDebug {
+
+    font-size: 1em;
+    color: white;
+    grid-row: 1;
+    grid-column: 9;
+    text-align: right;
+    margin-right: .4em;
 }

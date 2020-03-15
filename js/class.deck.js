@@ -10,6 +10,7 @@ class Deck {
         this.playerCardCache = [];
         this.aiCardCache = [];
         this.turnCounter = 0;
+        this.warActive = false;
         
         this.generateDeck();
         this.shuffle();
@@ -19,6 +20,10 @@ class Deck {
 
      generateDeck()
      {
+        if(this.cards.length > 0) 
+        {
+            this.cards = [];
+        }
 
         for(let x=0; x < this.suits.length; x++)
         {
@@ -36,8 +41,21 @@ class Deck {
             i % 2 == 0 ? this.playerDeck.push(this.cards[i]) : this.aiDeck.push(this.cards[i]);
         }
 
-        console.log("type warDeck.turn(); to begin.");
-        console.log("To test war recursion, type warDeck.testCondition();")
+        console.log("-------------------------------------------------------");
+        console.log("|| Type war.turn(); to begin.                        ||");
+        console.log("|| To automate turns, type war.autoTurns();          ||");       
+        console.log("|| To test war recursion, type war.testCondition();  ||");
+        console.log("-------------------------------------------------------");
+
+        console.log("┌─────────────┐");
+        console.log("│ ♠         ♥ │");
+        console.log("│             │");
+        console.log("│             │");
+        console.log("│     WAR     │");
+        console.log("│             │");
+        console.log("│             │");
+        console.log("│ ♦         ♣ │");
+        console.log("└─────────────┘");
     }
 
     shuffle = () => this.cards.sort(() => Math.random() - 0.5);
@@ -85,6 +103,8 @@ class Deck {
             console.log("AI card: ", this.aiCardCache[0]);
             console.log("War!");
 
+            this.warActive = true;
+            this.checkWinCondition();
 
             for(let i=0;i<4;i++)
             {
@@ -93,20 +113,26 @@ class Deck {
                 this.renderDecksToBrowser();
             }
 
+
             while(this.playerDeck.length > 4 || this.aiDeck.length > 4)
             {
                 if(this.playerCardCache[this.playerCardCache.length-1].score === this.aiCardCache[this.aiCardCache.length-1].score)
                 {
+                    this.checkWarWinCondition();
+
                     for(let j=0;j<4;j++)
                     {
                         this.playerCardCache.push(this.playerDeck.shift());
                         this.aiCardCache.push(this.aiDeck.shift());
                         this.renderDecksToBrowser();
                     }
+
+
                     console.log("Recursive War! Drawing more cards..");
 
                     if(this.playerCardCache[this.playerCardCache.length-1].score > this.aiCardCache[this.aiCardCache.length-1].score)
                     {   
+
                         this.playerDeck.push(...this.playerCardCache, ...this.aiCardCache);
                         console.log("----------------------------");
                         console.log("You won war! Cards won: ", ...this.aiCardCache);
@@ -115,8 +141,12 @@ class Deck {
                         console.log("----------------------------");
 
                         this.renderDecksToBrowser();
+
                         this.clearCache();
-                        this.checkWinCondition();
+
+                        // this.checkWinCondition();
+                        // this.warActive = false;
+
                         break;
                     }
                     else if(this.playerCardCache[this.playerCardCache.length-1].score < this.aiCardCache[this.aiCardCache.length-1].score)
@@ -131,7 +161,9 @@ class Deck {
 
                         this.renderDecksToBrowser();
                         this.clearCache();
+
                         this.checkWinCondition();
+                        this.warActive = false;
                         break;         
                     }
 
@@ -148,6 +180,7 @@ class Deck {
                     this.renderDecksToBrowser();
                     this.clearCache();
                     this.checkWinCondition();
+                    this.warActive = false;
                     break;
                 }
                 else if(this.playerCardCache[this.playerCardCache.length-1].score < this.aiCardCache[this.aiCardCache.length-1].score)
@@ -162,6 +195,7 @@ class Deck {
                     this.renderDecksToBrowser();
                     this.clearCache();
                     this.checkWinCondition();
+                    this.warActive = false;
                     break;                   
                 }
             }
@@ -181,8 +215,26 @@ class Deck {
         this.aiCardCache = [];
     }
 
+    checkWarWinCondition()
+    {
+        if(this.playerDeck.length < 4)
+        {
+            console.log("You lost this game. Resetting deck..");
+            alert("You lost this game. Resetting deck..")
+            this.reset();
+        }
+        else if(this.aiDeck.length < 4)
+        {
+            console.log("You won this game! Resetting deck..");
+            alert("You won this game! Resetting deck..");
+            this.reset();
+        }
+
+    }
+
     checkWinCondition()
     {
+
         if(this.playerDeck.length === 0)
         {
             console.log("You lost this game. Resetting deck..");
@@ -195,19 +247,48 @@ class Deck {
             alert("You won this game! Resetting deck..");
             this.reset();
         }
+        
     }
 
     reset()
     {
+        this.warActive = false;
         this.cards = [];
+        this.playerDeck = [];
+        this.aiDeck = [];
         this.clearCache();
         this.turnCounter = 0;
+        this.length = 52;
         this.generateDeck();
         this.shuffle();
         this.assignDecks();
+        this.renderDecksToBrowser();
+        this.clearActiveCards();
         console.log("Player Deck: ", ...this.playerDeck);
         console.log("AI Deck: ",...this.aiDeck);
 
+    }
+
+    clearActiveCards()
+    {
+        let cardGridElement = "";
+        let cardGridArray = "";
+
+        for(let x=1;x<4;x++)
+        {
+            for(let y=1;y<4;y++)
+            {
+                cardGridElement = `card-grid-${x}-${y}`;
+                cardGridArray = document.getElementsByClassName(cardGridElement);
+               
+               for(let z=0;z<cardGridArray.length;z++)
+               {
+                   cardGridArray[z].innerHTML = "";
+
+               }
+
+            }
+        }
     }
 
     testCondition()
@@ -269,6 +350,7 @@ class Deck {
         let aiDeckCount = document.getElementsByClassName("aiDeck")[0];
         aiDeckCount.innerHTML = `AI: ${this.aiDeck.length}`;
     }
+
     renderCardsToBrowser()
     {
 
@@ -292,9 +374,6 @@ class Deck {
         playerDisplayNumFour.style.color = this.playerCardCache[0].suitColor;
         playerDisplayNumFour.innerHTML = `<br />${this.playerCardCache[0].rank}`;
 
-        
-
-
         let aiDisplayNumOne = document.getElementsByClassName("card-grid-1-1")[1];
         aiDisplayNumOne.style.color = this.aiCardCache[0].suitColor;
         aiDisplayNumOne.innerHTML = this.aiCardCache[0].rank;
@@ -315,8 +394,15 @@ class Deck {
         aiDisplayNumFour.style.color = this.aiCardCache[0].suitColor;
         aiDisplayNumFour.innerHTML = `<br />${this.aiCardCache[0].rank}`;
 
+    }
 
 
 
+    autoTurns()
+    {
+        setInterval( () =>
+        {
+            this.turn();
+        }, 500);
     }
  }
