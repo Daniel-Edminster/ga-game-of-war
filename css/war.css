@@ -43,9 +43,7 @@ a:visited {
     text-align: center;
     color: white;
     font-size: 2em;
-    /* text-align: center; */
-    /* display: block; */
-    /* margin: 0 auto; */
+
 }
 
 .button-container-grid-item-left
@@ -220,7 +218,7 @@ a:visited {
     grid-column: 5;
 }
 
-#widthDebug {
+/* #widthDebug {
 
     font-size: 1em;
     color: white;
@@ -228,4 +226,4 @@ a:visited {
     grid-column: 9;
     text-align: right;
     margin-right: .4em;
-}
+} */
