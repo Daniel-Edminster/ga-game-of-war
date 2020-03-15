@@ -33,6 +33,12 @@ _**War** (also known as **Battle** in the United Kingdom) is a [card game](https
 
 <hr >
 
+##### To-do:
+- Add media queries to make front-end responsive
+- Add batch game simulations
+- add exit function for `war.autoTurns()`
+- JS animations?
+
 ```
 ┌─────────────┐┌─────────────┐┌─────────────┐┌─────────────┐
 │ ♠         ♥ ││ ♠         ♥ ││ ♠         ♥ ││ ♠         ♥ │

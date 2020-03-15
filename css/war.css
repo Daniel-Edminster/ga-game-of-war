@@ -118,6 +118,7 @@ a:visited {
     grid-row: 6 / span 3;
     min-height: 100%;
     text-align: center;
+    cursor: hand;
 }
 
 .card-grid {
