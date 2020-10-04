@@ -120,7 +120,8 @@ class WarGame {
                 this.p1.deck.push(...this.p1.inPlay.splice(0));
                 this.p1.deck.push(...this.p2.inPlay.splice(0));
                 this.playIdx = 0;
-                console.log("P1 Deck:", this.p1.deck, "P2 Deck: ", this.p2.deck)
+                console.log("P1 Deck:", this.p1.deck, "P2 Deck: ", this.p2.deck);
+                this.turnWinCheck();
             }
             else if(this.p2.inPlay[this.playIdx].value > this.p1.inPlay[this.playIdx].value) {
                 console.log(`p1[${this.playIdx}] = ${this.p1.inPlay[this.playIdx].suit}:${this.p1.inPlay[this.playIdx].value} | p2[${this.playIdx}] = ${this.p2.inPlay[this.playIdx].suit}:${this.p2.inPlay[this.playIdx].value}`);
@@ -128,6 +129,7 @@ class WarGame {
                 this.p2.deck.push(...this.p2.inPlay.splice(0));
                 this.p2.deck.push(...this.p1.inPlay.splice(0));
                 this.playIdx = 0;
+                this.turnWinCheck();
             }
             else {
                 console.log(`p1[${this.playIdx}] = ${this.p1.inPlay[this.playIdx].suit}:${this.p1.inPlay[this.playIdx].value} | p2[${this.playIdx}] = ${this.p2.inPlay[this.playIdx].suit}:${this.p2.inPlay[this.playIdx].value}`);
@@ -138,7 +140,7 @@ class WarGame {
         }
 
       }
-
 }
 
 let w = new WarGame();
+
